@@ -1,8 +1,8 @@
-import pdf from "pdf-parse";
+const pdf = require('pdf-parse');
 
-export const extractPDF = async (buffer) => {
+async function extractPDF(buffer) {
 	const data = await pdf(buffer);
 	return data.text;
-};
+}
 
-export default { extractPDF };
+module.exports = { extractPDF };
