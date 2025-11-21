@@ -1,4 +1,8 @@
-// services/pdfService.js
-// TODO: implement PDF parsing helpers (pdf-parse)
+import pdf from "pdf-parse";
 
-module.exports = {};
+export const extractPDF = async (buffer) => {
+	const data = await pdf(buffer);
+	return data.text;
+};
+
+export default { extractPDF };
