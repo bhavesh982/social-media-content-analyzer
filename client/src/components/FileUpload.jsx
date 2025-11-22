@@ -3,25 +3,36 @@ import { useState } from "react";
 export default function FileUpload({ onUpload }) {
   const [file, setFile] = useState(null);
 
-  const handleFileSelect = (e) => {
-    setFile(e.target.files[0]);
+  const handleFileSelect = (event) => {
+    const nextFile = event.target.files?.[0];
+    setFile(nextFile || null);
   };
 
   const handleUpload = () => {
-    if (file) onUpload(file);
+    if (!file) return;
+    onUpload(file);
   };
 
   return (
-    <div className="p-4 border rounded-xl bg-gray-800 text-white shadow-md">
+    <div className="uploader">
+      <label htmlFor="upload-input" className="uploader-label">
+        Upload PDF or image
+      </label>
       <input
+        id="upload-input"
         type="file"
         accept=".pdf,.png,.jpg,.jpeg"
         onChange={handleFileSelect}
-        className="mb-3"
       />
+      {file ? (
+        <p className="file-name">Selected: {file.name}</p>
+      ) : (
+        <p className="muted">Supports PDF, JPG, and PNG up to 10 MB.</p>
+      )}
       <button
         onClick={handleUpload}
-        className="px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-700"
+        className="primary-btn"
+        disabled={!file}
       >
         Analyze
       </button>

@@ -7,11 +7,8 @@ export const analyzeFile = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await axios.post(API_URL, formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  // Let the browser set the Content-Type (including boundary).
+  const response = await axios.post(API_URL, formData);
 
   return response.data;
 };
