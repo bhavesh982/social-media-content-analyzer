@@ -15,6 +15,9 @@ app.use('/analyze', analyzeRoutes);
 
 app.get('/', (req, res) => res.send('Server is running'));
 
+// Error handler (must come after routes)
+app.use(require('./middleware/errorHandler'));
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 
