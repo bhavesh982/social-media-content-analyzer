@@ -34,81 +34,21 @@ server/ (Express)
 	└─ middleware/errorHandler.js
 ```
 
-	## 🧭 High-Level Design (HLD)
+## 🧭 High-Level Design (HLD)
 
-	```mermaid
-	flowchart LR
-		subgraph Client [client/ (Vite + React)]
-			UI[App.jsx]
-			API[api/analyze.js]
-		end
+![High-level diagram](docs/uml-hld.png)
 
-		subgraph Server [server/ (Node + Express)]
-			IDX[index.js]
-			ROUTE[routes/analyze.js]
-			CTRL[controllers/analyzeController.js]
-			subgraph Services
-				PDF[pdfService]
-				OCR[ocrService]
-				RULE[ruleAnalyzer]
-				AI[aiEnhancer]
-			end
-		end
+**Flow:** the Vercel-hosted client captures files, posts them to the Render backend, which streams the payload through PDF/OCR services, heuristics, and Gemini enhancement before responding with KPIs, structured AI insights, and the raw model output.
 
-		Storage[(uploads/ temp files)]
-		Gemini[(Google Gemini API)]
+> _Diagram source: `docs/uml-hld.png`. Replace this placeholder with the exported PNG you shared to render the exact same visual on GitHub._
 
-		UI -->|File drop| API -->|multipart/form-data| IDX --> ROUTE --> CTRL
-		CTRL --> PDF
-		CTRL --> OCR
-		CTRL --> RULE
-		CTRL --> AI --> Gemini
-		CTRL -->|response JSON| UI
-		ROUTE --> Storage
-	```
+## 🛠 Low-Level Design (LLD)
 
-	**Flow:** the Vercel-hosted client captures files, posts them to the Render backend, which streams the payload through PDF/OCR services, heuristics, and Gemini enhancement before responding with KPIs, structured AI insights, and the raw model output.
+![Low-level diagram](docs/uml-lld.png)
 
-	## 🛠 Low-Level Design (LLD)
+**Details:** the low-level map shows how the React entry (main → App → components) composes the upload workflow, while the Express stack wires `index.js` → `routes/analyze.js` → `analyzeController` and its service helpers.
 
-	```mermaid
-	flowchart TD
-		subgraph ClientSrc [client/src]
-			main[main.jsx]
-			app[App.jsx]
-			pages[pages/Home.jsx]
-			components[components/]
-			hooks[hooks/useAnalyze.js]
-			apiFile[api/analyze.js]
-		end
-
-		components -->|renders| app
-		hooks --> app
-		apiFile --> hooks
-		app --> main
-
-		subgraph ServerDir [server/]
-			idx[index.js]
-			routes[routes/analyze.js]
-			ctrl[controllers/analyzeController.js]
-			subgraph svc [services/]
-				pdf[pdfService.js]
-				ocr[ocrService.js]
-				rule[ruleAnalyzer.js]
-				ai[aiEnhancer.js]
-			end
-			utils[utils/fileValidator.js]
-		end
-
-		idx --> routes --> ctrl
-		ctrl --> pdf
-		ctrl --> ocr
-		ctrl --> rule
-		ctrl --> ai
-		routes --> utils
-	```
-
-	**Details:** the low-level map shows how the React entry (main → App → components) composes the upload workflow, while the Express stack wires `index.js` → `routes/analyze.js` → `analyzeController` and its service helpers. This mirrors the provided HLD/LLD diagrams but keeps everything version-controlled inside the repo.
+> _Diagram source: `docs/uml-lld.png`. Swap in the latest image whenever the structure changes._
 
 ## 🚀 Live URLs
 - **Frontend (Vercel):** https://social-media-content-analyzer-verce.vercel.app/
