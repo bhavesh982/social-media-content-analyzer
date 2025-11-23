@@ -36,19 +36,18 @@ server/ (Express)
 
 ## 🧭 High-Level Design (HLD)
 
-![High-level diagram](docs/uml-hld.png)
+![High-level diagram](https://github.com/bhavesh982/social-media-content-analyzer/blob/main/docs/uml-hld.png)
 
 **Flow:** the Vercel-hosted client captures files, posts them to the Render backend, which streams the payload through PDF/OCR services, heuristics, and Gemini enhancement before responding with KPIs, structured AI insights, and the raw model output.
 
-> _Diagram source: `docs/uml-hld.png`. Replace this placeholder with the exported PNG you shared to render the exact same visual on GitHub._
 
 ## 🛠 Low-Level Design (LLD)
 
-![Low-level diagram](docs/uml-lld.png)
+![Low-level diagram](https://github.com/bhavesh982/social-media-content-analyzer/blob/main/docs/uml-lld.png)
 
 **Details:** the low-level map shows how the React entry (main → App → components) composes the upload workflow, while the Express stack wires `index.js` → `routes/analyze.js` → `analyzeController` and its service helpers.
 
-> _Diagram source: `docs/uml-lld.png`. Swap in the latest image whenever the structure changes._
+
 
 ## 🚀 Live URLs
 - **Frontend (Vercel):** https://social-media-content-analyzer-verce.vercel.app/
