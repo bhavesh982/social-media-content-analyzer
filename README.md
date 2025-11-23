@@ -2,7 +2,7 @@
 
 Smart PDF / image ingestion, instant KPIs, and Gemini-powered creative guidance for social media managers.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000?logo=vercel)](https://social-media-content-analyzer-verce.vercel.app/) 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000?logo=vercel)](https://social-media-content-analyzer-peach.vercel.app/) 
 [![Backend](https://img.shields.io/badge/Backend-Render-0468d7?logo=render)](https://social-media-content-analyzer-er7c.onrender.com/)
 
 > **Try it now:** visit the Vercel-hosted UI → upload a PDF or screenshot → the app calls the Render API and streams back KPIs, trend guidance, and the raw Gemini payload for auditing.
