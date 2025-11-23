@@ -44,7 +44,7 @@ server/ (Express)
 
 ## 🛠 Low-Level Design (LLD)
 
-![Low-level diagram](docs/uml-lld.png)
+![Low-level diagram](https://github.com/bhavesh982/social-media-content-analyzer/blob/main/docs/uml-lld.png)
 
 **Details:** the low-level map shows how the React entry (main → App → components) composes the upload workflow, while the Express stack wires `index.js` → `routes/analyze.js` → `analyzeController` and its service helpers.
 
