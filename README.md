@@ -36,7 +36,7 @@ server/ (Express)
 
 ## 🧭 High-Level Design (HLD)
 
-![High-level diagram](docs/uml-hld.png)
+![High-level diagram](https://github.com/bhavesh982/social-media-content-analyzer/blob/main/docs/uml-hld.png)
 
 **Flow:** the Vercel-hosted client captures files, posts them to the Render backend, which streams the payload through PDF/OCR services, heuristics, and Gemini enhancement before responding with KPIs, structured AI insights, and the raw model output.
 
