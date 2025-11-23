@@ -53,6 +53,7 @@ exports.analyze = async (req, res, next) => {
 		// Attempt AI enhancement, if configured
 		let aiStructured = null;
 		let aiRaw = null;
+		let aiModel = null;
 		try {
 			const aiResult = await aiEnhancer.enhanceWithAI(extractedText || '');
 			if (aiResult) {
@@ -60,6 +61,7 @@ exports.analyze = async (req, res, next) => {
 					aiRaw = aiResult;
 				} else {
 					aiRaw = aiResult.raw ?? null;
+					aiModel = aiResult.model ?? aiModel;
 					if (aiResult.structured && typeof aiResult.structured === 'object' && !Array.isArray(aiResult.structured)) {
 						aiStructured = aiResult.structured;
 					}
@@ -84,6 +86,7 @@ exports.analyze = async (req, res, next) => {
 			analysis,
 			ai: aiStructured,
 			aiRaw,
+			aiModel,
 		});
 	} catch (err) {
 		next(err);

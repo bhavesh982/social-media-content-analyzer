@@ -1,7 +1,9 @@
 import axios from "axios";
 
-// Point to the backend analyze endpoint (match server port)
-const API_URL = "http://localhost:3000/analyze";
+// Prefer env override, default to hosted Render API
+const API_URL =
+  import.meta.env.VITE_API_URL?.trim() ||
+  "https://social-media-content-analyzer-er7c.onrender.com/analyze";
 
 export const analyzeFile = async (file) => {
   const formData = new FormData();

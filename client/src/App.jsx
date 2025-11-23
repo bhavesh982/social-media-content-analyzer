@@ -44,6 +44,7 @@ function App() {
   // Extract the AI data based on the controller structure
   const structuredAI = result?.ai;       // Structured JSON from server
   const rawAI = result?.aiRaw;           // Original string fallback
+  const aiModel = result?.aiModel;       // Model identifier
 
   return (
     <div className="app-shell">
@@ -110,7 +111,8 @@ function App() {
             {/* THIS IS THE FIX: Pass both structured data and raw fallback */}
             <Dashboard 
               data={structuredAI} 
-              rawFallback={rawAI} 
+              rawFallback={rawAI}
+              model={aiModel}
             />
             
           </div>

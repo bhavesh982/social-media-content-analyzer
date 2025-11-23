@@ -8,7 +8,7 @@ const sentimentMap = {
   negative: "sentiment-negative",
 };
 
-export default function Dashboard({ data, rawFallback }) {
+export default function Dashboard({ data, rawFallback, model }) {
   let parsedData = null;
 
   // --- 1. LOGIC: Try to get usable data ---
@@ -26,12 +26,17 @@ export default function Dashboard({ data, rawFallback }) {
   }
 
   // --- 2. FALLBACK: If JSON failed, show Raw Text ---
+  const modelLabel = model ? model.replace(/^models\//i, '') : null;
+
   if (!parsedData) {
     if (!rawFallback) return null; // Nothing to show
     return (
       <div className="dashboard-container">
         <div className="result-card">
           <h3 className="card-title">Analysis Output (Raw)</h3>
+          {modelLabel && (
+            <p className="model-chip">AI Model: {modelLabel}</p>
+          )}
           <p className="muted" style={{ marginBottom: "10px" }}>
             The AI response was incomplete or invalid JSON. Showing raw text:
           </p>
@@ -51,6 +56,9 @@ export default function Dashboard({ data, rawFallback }) {
   return (
     <div className={gridClass}>
       <div className="dash-stack">
+        {modelLabel && (
+          <p className="model-chip">AI Model: {modelLabel}</p>
+        )}
         {/* Summary */}
         <div className="dash-card summary-card">
           <h3>🚀 Executive Summary</h3>

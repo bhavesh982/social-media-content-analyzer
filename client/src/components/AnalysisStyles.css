@@ -19,6 +19,14 @@
   gap: 20px;
 }
 
+.model-chip {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a5b4fc;
+  margin: 0;
+}
+
 .dash-card {
   background-color: #1e1e1e;
   border: 1px solid #333;

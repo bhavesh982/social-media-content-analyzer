@@ -247,6 +247,7 @@ module.exports.enhanceWithAI = async function (text) {
     return {
       raw: aiText,
       structured: structured || null,
+      model: selectedModel || null,
     };
   } catch (err) {
     console.error('[AI Enhancer Crash]', err && err.message ? err.message : err);
